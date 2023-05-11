@@ -1,0 +1,137 @@
+# Compiled Object files
+*.suo
+*.obj
+*.dll
+*.exe
+*.pdb
+*.ipdb
+*.lib
+*.a
+*.o
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Packages
+*.nuget.props
+*.nuget.targets
+*.nupkg
+*.snupkg
+*.paket.*
+paket-lock.json
+npm-debug.log
+yarn.lock
+package-lock.json
+.bower-cache
+
+# Visual Studio files
+.vs/
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.pyc
+*.pyo
+*.sln.docstates
+*.sln.docstates.cache
+*.vssscc
+.vspscc
+*.pidb
+*.svclog
+*.scc
+
+# Visual Studio Code
+.vscode/
+
+# Resharper
+_ReSharper*/
+*.resharper
+*.DotSettings.user
+*.inspect.xml
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+[Xx]64/
+[Xx]86/
+[Bb]uild/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+
+# Test results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+nunit-*.xml
+
+# Build Results of an ATL Project
+[Dd]ebugPS/
+[Rr]eleasePS/
+dlldata.c
+
+# Roslyn cache directories
+*.ide/
+
+# Generated Files
+_UpgradeReport_Files/
+Backup*/
+UpgradeLog*.XML
+UpgradeLog*.htm
+
+# PowerShell
+*.psess
+*.ps1xml
+*.psc1
+*.psm1
+*.psd1
+*.cdxml
+*.pssc
+*.psrc
+*.ps1
+*.nuspec
+
+# NuGet
+*.nupkg
+**/packages/*
+*.sqlite
+
+# Miscellaneous
+*.dat
+*.log
+*.bat
+*.cmd
+*.user
+*.tmp
+*.scc
+._*
+*~.nib
+*.swp
+*.docstates
+*.dotCover
+*.tclog
+*.tcstate
+*.tcsummary
+.csproj.user
+.vsmdi
+*.md
+.npmrc
