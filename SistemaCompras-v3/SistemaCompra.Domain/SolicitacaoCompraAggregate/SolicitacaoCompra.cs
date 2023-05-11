@@ -41,14 +41,14 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
         public void RegistrarCompra(IEnumerable<Item> itens)
         {
-            ValidaTotalGeral(itens);
+            ValidaItens(itens);
             Itens = itens.ToList();
-            AtualizaCondPagto();
+            AtualizaTotalGeral();
+            ValidarAtualizacaoPagTotCompra();
         }
 
-        public void AtualizaCondPagto()
+        public void ValidarAtualizacaoPagTotCompra()
         {
-            AtualizaTotalGeral();
             if (TotalGeral != null && TotalGeral.Value > 5000)
                 CondicaoPagamento = new CondicaoPagamento(30);
         }
@@ -68,7 +68,7 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
             TotalGeral = new Money(produtoTotal);
         }
 
-        public void ValidaTotalGeral(IEnumerable<Item> itens)
+        public void ValidaItens(IEnumerable<Item> itens)
         {
             if (itens == null || !itens.Any())
                 throw new BusinessRuleException("A solicitação de compra deve possuir itens!");

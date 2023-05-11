@@ -23,8 +23,8 @@ namespace SistemaCompra.Application.SolicitacaoCompra.Command.RegistrarCompra
             try
             {
                 SolicitacaoAgg.SolicitacaoCompra solicitacaoCompra = new SolicitacaoAgg.SolicitacaoCompra(request.UsuarioSolicitante, request.NomeFornecedor);
+                solicitacaoCompra.RegistrarCompra(request.Itens);
                 _repository.RegistrarCompra(solicitacaoCompra);
-
                 Commit();
                 PublishEvents(solicitacaoCompra.Events);
             }
