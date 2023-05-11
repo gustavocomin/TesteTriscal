@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using SistemaCompra.Domain.Core;
 using SistemaCompra.Infra.Data.UoW;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using SolicitacaoAgg = SistemaCompra.Domain.SolicitacaoCompraAggregate;
@@ -17,11 +19,23 @@ namespace SistemaCompra.Application.SolicitacaoCompra.Command.RegistrarCompra
 
         public Task<bool> Handle(RegistrarCompraCommand request, CancellationToken cancellationToken)
         {
-            SolicitacaoAgg.SolicitacaoCompra solicitacaoCompra = new SolicitacaoAgg.SolicitacaoCompra(request.UsuarioSolicitante, request.NomeFornecedor);
-            _repository.RegistrarCompra(solicitacaoCompra);
 
-            Commit();
-            PublishEvents(solicitacaoCompra.Events);
+            try
+            {
+                SolicitacaoAgg.SolicitacaoCompra solicitacaoCompra = new SolicitacaoAgg.SolicitacaoCompra(request.UsuarioSolicitante, request.NomeFornecedor);
+                _repository.RegistrarCompra(solicitacaoCompra);
+
+                Commit();
+                PublishEvents(solicitacaoCompra.Events);
+            }
+            catch (BusinessRuleException e)
+            {
+                throw new BusinessRuleException($"Erro ao criar Solicitação de compra. Erro: {e.Message}");
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Erro ao criar Solicitação de compra. Erro: {e.Message}");
+            }
 
             return Task.FromResult(true);
         }

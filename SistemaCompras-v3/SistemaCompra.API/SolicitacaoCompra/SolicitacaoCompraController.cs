@@ -1,6 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using SistemaCompra.Application.SolicitacaoCompra.Command.RegistrarCompra;
+using SistemaCompra.Domain.Core;
+using System;
+using System.Threading.Tasks;
 
 namespace SistemaCompra.API.SolicitacaoCompra
 {
@@ -18,10 +21,22 @@ namespace SistemaCompra.API.SolicitacaoCompra
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
         [ProducesResponseType(500)]
-        public IActionResult RegistrarCompra([FromBody] RegistrarCompraCommand registrarCompraCommand)
+        public async Task<IActionResult> RegistrarCompraAsync([FromBody] RegistrarCompraCommand registrarCompraCommand)
         {
-            _mediator.Send(registrarCompraCommand);
-            return StatusCode(201);
+
+            try
+            {
+                var result = await _mediator.Send(registrarCompraCommand);
+                return Ok(result);
+            }
+            catch (BusinessRuleException e)
+            {
+                return BadRequest(e.Message);
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
     }
 }

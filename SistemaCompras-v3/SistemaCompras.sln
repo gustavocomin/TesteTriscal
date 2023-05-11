@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaCompra.API", "SistemaCompra.API\SistemaCompra.API.csproj", "{458CCDFA-47C2-4806-AF48-B110D29ADFF1}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaCompra.Domain.Test", "SistemaCompra.Domain.Test\SistemaCompra.Domain.Test.csproj", "{76FEE95F-08DF-4DA4-B989-6CF8341EA6A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SistemaCompra.CrossCutting", "SistemaCompra.CrossCutting\SistemaCompra.CrossCutting.csproj", "{42CC3DD8-8E54-4DC0-A1F7-3CD9F666E467}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SistemaCompra.Application.Test", "SistemaCompra.Application.Test\SistemaCompra.Application.Test.csproj", "{D9FF4DD8-1580-4DA3-BC19-20858B53B9A1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{42CC3DD8-8E54-4DC0-A1F7-3CD9F666E467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42CC3DD8-8E54-4DC0-A1F7-3CD9F666E467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42CC3DD8-8E54-4DC0-A1F7-3CD9F666E467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9FF4DD8-1580-4DA3-BC19-20858B53B9A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9FF4DD8-1580-4DA3-BC19-20858B53B9A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9FF4DD8-1580-4DA3-BC19-20858B53B9A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9FF4DD8-1580-4DA3-BC19-20858B53B9A1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

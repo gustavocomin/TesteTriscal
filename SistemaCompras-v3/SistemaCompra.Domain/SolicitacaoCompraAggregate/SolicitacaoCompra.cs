@@ -1,4 +1,5 @@
-﻿using SistemaCompra.Domain.Core.Model;
+﻿using SistemaCompra.Domain.Core;
+using SistemaCompra.Domain.Core.Model;
 using SistemaCompra.Domain.ProdutoAggregate;
 using System;
 using System.Collections.Generic;
@@ -31,8 +32,6 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
             NomeFornecedor = new NomeFornecedor(nomeFornecedor);
             Data = DateTime.Now;
             Situacao = Situacao.Solicitado;
-            ValidaTotalGeral(this);
-            AtualizaCondPagto(this);
         }
 
         public void AdicionarItem(Produto produto, int qtde)
@@ -42,19 +41,37 @@ namespace SistemaCompra.Domain.SolicitacaoCompraAggregate
 
         public void RegistrarCompra(IEnumerable<Item> itens)
         {
-
+            ValidaTotalGeral(itens);
+            Itens = itens.ToList();
+            AtualizaCondPagto();
         }
 
-        public void AtualizaCondPagto(SolicitacaoCompra solicitacaoCompra)
+        public void AtualizaCondPagto()
         {
-            if (solicitacaoCompra.TotalGeral.Value > 5000)
-                solicitacaoCompra.CondicaoPagamento = new CondicaoPagamento(30);
+            AtualizaTotalGeral();
+            if (TotalGeral != null && TotalGeral.Value > 5000)
+                CondicaoPagamento = new CondicaoPagamento(30);
         }
 
-        public void ValidaTotalGeral(SolicitacaoCompra solicitacaoCompra)
+        public void AtualizaTotalGeral()
         {
-            if (!solicitacaoCompra.Itens.ToList().Any())
-                throw new Exception("Total de intes deve ser maior que zero");
+            decimal produtoTotal = 0;
+            List<int> quantidades = Itens.Select(x => x.Qtde).ToList();
+            List<decimal> valores = Itens.Select(x => x.Produto.Preco.Value).ToList();
+
+            for (int i = 0; i < Itens.Count; i++)
+            {
+                decimal produto = quantidades[i] * valores[i];
+                produtoTotal += produto;
+            }
+
+            TotalGeral = new Money(produtoTotal);
+        }
+
+        public void ValidaTotalGeral(IEnumerable<Item> itens)
+        {
+            if (itens == null || !itens.Any())
+                throw new BusinessRuleException("A solicitação de compra deve possuir itens!");
         }
     }
 }
